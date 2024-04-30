@@ -84,7 +84,7 @@ newPatient.statics.login = async function({ patient, password }){
 
 
 
-const Patients = mongoose.model('user', newPatient);
+const Patients = mongoose.model('patient', newPatient);
 
 
 module.exports = Patients;
