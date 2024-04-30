@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/authHead.ejs') %>
+</head>
+
+<body>
+    <!-- header -->
+    <header class = "header bg-blue">
+        <nav class = "navbar bg-blue">
+            <div class = "container flex">
+                <div class="logo-div">
+                    <a href = "index.html" class = "navbar-brand">
+                        <img src = "/images/ANCOP logo.jpg" class="logo" alt = "site logo">
+                    </a>
+                    <div>ANCOP Hospital</div>
+                </div>
+                <button type = "button" class = "navbar-show-btn">
+                    <img src = "/images/ham-menu-icon.png">
+                </button>
+
+                <div class = "navbar-collapse bg-white">
+                    <button type = "button" class = "navbar-hide-btn">
+                        <img src = "/images/close-icon.png">
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Home</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">About</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Service</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Doctors</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Departments</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Blog</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    <div class = "search-bar">
+                      <form class="search-form">
+                        <div class = "search-bar-box flex">
+                            <input type = "search" class = "search-control" placeholder="Search here">
+                            <!-- <span class = "search-icon flex"> -->
+                                <img src = "/images/search-icon-dark.png">
+                            <!-- </span> -->
+                        </div>
+                    </form>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+
+        <div class = "header-inner text-white text-center">
+            <div class = "container grid">
+                <div class = "header-inner-left">
+                    <h1>your most trusted<br> <span>health partner</span></h1>
+                    <p class = "lead">the best match services for you</p>
+                    <p class = "text text-md">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam, nulla odit esse necessitatibus corporis voluptatem?</p>
+                </div>
+                <div class = "header-inner-right">
+                    <!-- Hero Start -->
+                    <div class="container-fluid bg-primary py-5 mb-5 login-wrapper">
+                        <form class="login-form">
+                        <div class="login">Register</div>
+                        <p class="input-wrapper">
+                            <p>
+                                <input type="text" name="firstname" id="firstname" placeholder="First Name" class="input" required>
+                            </p>
+                            <p>
+                                <input type="text" name="lastname" id="lastname" placeholder="Last Name" class="input" required> 
+                            </p>
+                        <p>
+                            <input type="text" name="email" id="email" placeholder="ancophospital@gmail.com" class="input">
+                            <!-- <img src="/img/user.png" class="userImage" alt=""> -->
+                            <div class="error email"></div> 
+                        </p>
+                        <p>
+                            <input type="password" name="password" id="pass" placeholder="Password" class="input pass">
+                            <!-- <img src="/img/visible (1).png" class="passImage" onclick="iconChange()" alt=""> -->
+                            <div class="error pass"></div>
+                        </p>
+                        <p>
+                            <input type="text" name="phonenumber" id="phone" placeholder="Phone number" class="input" required>
+                            <div class="error phone"></div>
+                          </p>
+                        <p>
+                          <div class="form-flex">
+                            <span class="input-span">ADMIN:</span>
+                            <select name="type" id="type" class="dob" required>
+                                <option value="">Please Select</option>
+                              <option value="DOCTOR">Doctor</option>
+                              <option value="NURSE">Nurse</option>
+                              <option value="OTHERS">OTHERS</option>
+                            </select>
+    
+                          </div>
+                          
+                          <div class="error pass"></div>
+                      </p>
+                      <p>
+                        
+                        <div>
+                          <span class="input-span">D.O.B:</span>
+                          <input type="date" name="dob" id="dob" placeholder="Password" class="dob" required>
+                        </div>
+                        <div class="error pass"></div>
+                    </p>
+                    <p>
+                      <div class="form-flex">
+                        <span class="input-span">Gender:</span>
+                        <select name="Gender" id="gender" class="dob" required>
+                            <option value="">Select Gender</option>
+                          <option value="MALE">MALE</option>
+                          <option value="FEMALE">FEMALE</option>
+                        </select>
+                      </div>
+                  </p>
+                        <p><button class="signbtn">Sign up</button></p>
+                        <div class="remember"><span class="remember-me"><input type="checkbox" name="" id="">Remember me</span> <span class="need-help"><a href="#">Need help?</a></span></div>
+                        <p class="new-to">New to ANCOP? <a href="/signup">Sign up now.</a></p>
+                        </p>  
+                        </form>
+                    </div>
+                    <!-- <img src = "images/header.png"> -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end of header -->
+
+   <%- include('./partials/footer.ejs') %>
+    <!-- authentication js ------->
+    <!-- <script src="/js/loginauth.js"></script> -->
+
+    <!-- Template Javascript -->
+    <script src="/js/script.js"></script>
+
+
+    <script>
+
+
+        let form = document.querySelector('.login-form');
+        let veks = form.dob;
+
+
+
+        veks.max = new Date().toISOString().split("T")[0];
+
+        function calculateAge(){
+            let birtdate = new Date(veks.value);
+
+            let d1 = birtdate.getDate();
+            let m1 = birtdate.getMonth() +1;
+            let y1 = birtdate.getFullYear();
+
+            let today = new Date();
+
+            let d2 = today.getDate();
+            let m2 = today.getMonth() +1;
+            let y2 = today.getFullYear();
+
+            let d3, m3, y3;
+
+            y3 = y2 - y1;
+
+            let age = y3;
+
+
+            return age
+
+        }
+
+
+        
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+
+            const emailError = document.querySelector('.error.email');
+            const passError = document.querySelector('.error.pass');
+            const phoneError = document.querySelector('.error.phone');
+
+
+            emailError.textContent = ``;
+            passError.textContent = ``;
+            phoneError.textContent = ``
+
+                let email = form.email.value;
+                let password = form.password.value;
+                let type = form.type.value;
+                let gender = form.Gender.value;
+                let dob = form.dob.value;
+                let firstname = form.firstname.value;
+                let lastname = form.lastname.value;
+                let phonenumber = form.phonenumber.value;
+
+                const age = calculateAge();
+
+
+                try{
+                    const res = await fetch('/ANCOP/admin/Register', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password, type, gender, dob, age, firstname, lastname, phonenumber }),
+                    headers: {'content-Type': 'application/json'}
+                });
+
+                    const data = await res.json();
+
+                    if(data.result){
+
+                        alert(data.result);
+
+                    }
+
+                    if(data.errors){
+
+                        emailError.textContent = `*${data.errors.email}`;
+                        passError.textContent = `*${data.errors.password}`;
+                        phoneError.textContent = `*${data.errors.phonenumber}`
+
+                        console.log(data.errors);
+                        
+                    }
+                    
+
+
+                }
+                catch(err){
+                    console.log(err);
+                }
+
+
+            // console.log({email, password, type, gender, dob, age});
+        })
+
+    </script>
+</body>
+
+</html>

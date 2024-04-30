@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Clinic Note</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.notes header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.notes header h1 {
+  margin: 0;
+}
+
+.note-wrapper {
+  padding: 20px;
+}
+
+.note-patient-info{
+  
+  line-height: 30px;
+}
+
+.note-patient-info, .doctor-notes {
+  margin-bottom: 20px;
+}
+
+.info .note-age,
+.info label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.info .note-age span{
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 100;
+  margin-left: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.info textarea,
+.doctor-notes textarea{
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.info textarea {
+  resize: vertical;
+}
+
+footer {
+  background-color: #f8f9fa;
+  color: #333;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+  </style>
+</head>
+<body>
+  <div class="notes">
+    <header>
+      <h1>Hospital Clinic Note</h1>
+      <p>Date: <span id="date"></span></p>
+    </header>
+    
+    <div class="note-wrapper">
+      <section class="note-patient-info">
+        <h2>Patient Information</h2>
+        <div class="info">
+          <div class="note-age">Name: <span>Amaga Nnamdi</span></div>
+        </div>
+        <div class="info">
+          <div class="note-age">Hospital ID: <span>anc45nk</span></div>
+        </div>
+        <div class="info">
+          <div class="note-age">Gender: <span>Male</span></div>
+        </div>
+        <div class="info">
+          <div class="note-age">Age: <span>21yrs</span></div>
+        </div>
+        <div class="info">
+          <label for="diagnosis">Diagnosis:</label>
+          <textarea id="diagnosis" rows="4" placeholder="Enter diagnosis"></textarea>
+        </div>
+      </section>
+  
+      <section class="doctor-notes">
+        <h2>Doctor's Notes</h2>
+        <textarea id="notes" rows="6" placeholder="Enter notes"></textarea>
+      </section>
+    </div>
+    
+    <footer>
+      <p>&copy; 2024 Hospital Clinic. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Set current date
+    document.getElementById('date').innerHTML = new Date().toLocaleDateString();
+  </script>
+</body>
+</html>

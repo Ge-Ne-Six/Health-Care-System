@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	
+	
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/css/dashstyle.css">
+	<link rel="stylesheet" href="/css/main.css">
+
+	<style>
+		body{
+    display: flex;
+		}
+		.logo{
+    height: 80px;
+    padding: 16px;
+		}
+		.logo-div{
+			display: flex !important;
+			color: #fff;
+		}
+		.logo-div img{
+			width: 80px !important;
+			border-radius: 80px;
+			margin-top: 17px;
+		}
+		.logo-div div{
+			display: flex !important;
+			margin-top: 35px;
+		}
+		.logo-div div span{
+			margin-left: 10px;
+		}
+		.profile-image{
+			width: 70px;
+			height: 70px;
+			border-radius: 50px;
+		}
+	</style>
+	<title>UserHub</title>
+</head>
+<body>
+
+<%- include('../partials/nav-mainbar.ejs') %>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Drug Chart</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Hospital ID:</a>
+						</li>
+						<li>
+							<a class="active" href="#"><%= user.patientID %></a>
+						</li>
+					</ul>
+				</div>
+				
+				<a href="#" class="btn-download">
+					<div>Hospital ID: </div>
+				<span class="text"></span>
+				</a>
+			</div>
+
+			
+
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Chart</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Drugs</th>
+								<th>Dose</th>
+								<th>Frequency</th>
+								<th>Route</th>
+								<th>Time (AM/PM)</th>
+								<th>duration</th>
+								<th>Prescriber</th>
+								<th>Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% if(drugcharts){ %>
+								<% for(i = 0; i < drugcharts.length; i++) {%>
+
+									<% const drugchart = drugcharts[i] %>
+
+									<tr>
+										<td><%= drugchart.drug %></td>
+										<td><%= drugchart.dose %></td>
+										<td><%= drugchart.frequency %></td>
+										<td><%= drugchart.route %></td>
+										<td><%= drugchart.time %></td>
+										<td><%= drugchart.duration %></td>
+										<td><%= drugchart.prescriber %></td>
+										<td><%= drugchart.date %></td>
+									</tr>
+
+								<% } %>	
+
+							<% } %>		
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="shortcut icon" href="images/ANCOP logo.jpg">
+	
+	<!-- My CSS -->
+	<!-- <link href="css/style.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="/css/dashstyle.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<style>
+		body{
+    display: flex;
+		}
+		main{
+			margin-left: -100px;
+		}
+		.logo-div{
+			display: flex !important;
+			color: #fff;
+		}
+		.logo-div img{
+			width: 80px !important;
+			border-radius: 80px;
+			margin-top: 17px;
+		}
+		.logo-div div{
+			display: flex !important;
+			margin-top: 35px;
+		}
+		.logo-div div span{
+			margin-left: 10px;
+		}
+		td a:hover{
+			text-decoration: underline;
+			color: #00a6ff;
+		}
+		.patients-profile-wrapper{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.839);
+			padding-top: 120px;
+			overflow-y: scroll;
+			/* display: none; */
+		}
+		.profile-show{
+			display: block;
+		}
+		.patients-profile-wrapper .profile{
+			margin: auto;
+			width: 400px;
+			height: 500px;
+			background-color: #fff;
+			z-index: 2;
+			border: 2px solid rgb(52, 52, 255);
+			padding: 15px;
+		}
+		.remove-wrapper{
+			background-color: blue;
+			position: relative;
+			top: -10px;
+			right: -10px;
+		}
+		.remove-wrapper img{
+			width: 25px;
+			float: right;
+			cursor: auto;
+		}
+		.remove-wrapper img:hover{
+			background-color: rgba(65, 64, 64, 0.219);
+			border-radius: 50px;
+		}
+		.user-img img{
+			width: 100px;
+			height: 100px;
+			margin: auto;
+		}
+		.profile .user-details{
+			padding: 10px;
+			background-color: #f0ededdb;
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 25px;
+			letter-spacing: 2px;
+			margin-top: 20px;
+		}
+		.profile .user-details span{
+			font-size: 13px;
+			font-weight: 100;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+		}
+		.profile .user-func{
+			display: flex;
+			flex-direction: column;
+			margin-top: 20px;
+		}
+		.first{
+			display: flex;
+		}
+		.shift-func{
+			margin-left: 20px;
+		}
+		.style-func{
+			background-color: rgb(98, 98, 234);
+			color: #fff;
+			padding-left: 5px;
+			padding-right: 5px;
+			border: 1px solid #fff;
+			width: 180px;
+			display: flex;
+			padding-top: 3px;
+			padding-bottom: 3px;
+			border-radius: 5px;
+		}
+		.func-img{
+			width: 18px;
+			height: 18px;
+			cursor: pointer;
+			margin-top: 4px;
+		}
+		.notes .func-img{
+			margin-left: 98px;
+		}
+		.drug-chart .func-img{
+			margin-left: 61px;
+		}
+		.observation .func-img{
+			margin-left: 9.8px;
+		}
+		.lab-test .func-img{
+			margin-left: 62px;
+		}
+		.profile .footer{
+			background-color: #fff;
+			color: rgba(178, 175, 175, 0.098);
+			text-align: center;
+			margin-top: 70px;
+		}
+		/* drugchart */
+		.drugchart-add{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.839);
+			padding-top: 120px;
+			overflow-y: scroll;
+			display: none;
+			text-align: center;
+		}
+		.drugchart-add img{
+			width: 50px;
+			margin: auto;
+			cursor: pointer;
+		}
+		.drugchart-add table{
+			width: 60%;
+			margin: auto;
+			margin-top: 50px;
+		}
+		.drugchart-add .drug-head{
+			margin: auto;
+			margin-top: 20px;
+			width: 200px;
+			background-color: #fff;
+			color: black;
+			text-align: center;
+			font-size: 30px;
+			font-weight: 700;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		}
+		.show-DC{
+			display: block;
+		}
+		#medication-body td{
+			max-width: 130px;
+		}
+		#add-row-btn,
+		#send-chart{
+			background-color: blue;
+			color: #fff;
+			width: 150px;
+			padding: 10px;
+			margin-top: 20px;
+			border-radius: 6px;
+			transition: all 0.2s ease-in;
+		}
+		#add-row-btn:hover,
+		#send-chart:hover{
+			box-shadow:  0px 0px 5px 3px;
+			border: 1px solid #fff;
+			background-color: rgb(64, 64, 255);
+		}
+		/* notes */
+		.clinic-note{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.839);
+			padding-top: 120px;
+			overflow-y: scroll;
+			display: none;
+			z-index: 800;
+		}
+		.show-note{
+			display: block;
+		}
+		.notes{
+			margin: auto;
+			width: 500px;
+			height: 500px;
+			background-color: #fff;
+			padding-top: 120px;
+			overflow-y: scroll;
+			border: 1px solid #007bff;	
+		}
+		.notes header .note-remove-img{
+			float: right;
+			padding: 5px;
+			border-radius: 50px;
+			margin-top: -12px;
+			margin-right: -12px;
+		}
+		.notes header .note-remove-img:hover{
+			background-color: #d4e6f964;
+			cursor: pointer;
+		}
+		.notes img{
+			width: 30px;
+			height: 30px;
+		}
+		.notes header {
+			background-color: #007bff;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+			margin-top: -120px;
+			position: fixed;
+			width: 480px;
+		}
+
+		.notes header h1 {
+			margin: 0;
+		}
+
+		.note-wrapper {
+			padding: 20px;
+		}
+
+		.note-patient-info, .doctor-notes {
+			margin-bottom: 20px;
+		}
+		.note-patient-info h2{
+			text-align: center;
+
+		}
+
+		.info .note-age,
+		.info label {
+			display: block;
+			margin-bottom: 5px;
+			font-size: 17px;
+			font-weight: 700;
+			text-align: center;
+		}
+		.info .note-age span{
+			letter-spacing: 1px;
+			font-size: 16px;
+			font-weight: 100;
+			margin-left: 10px;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+		}
+
+		.info textarea,
+		.doctor-notes textarea{
+			width: 90%;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-bottom: 10px;
+		}
+
+		.note-wrapper button{
+			padding: 10px;
+			width: 200px;
+			margin-left: 27%;
+			text-align: center;
+		}
+
+		.info textarea {
+			resize: vertical;
+		}
+		.d-table{
+			background-color: #fff;
+			border-collapse: collapse;
+			padding: 10px;
+		}
+		.d-table td, 
+		.d-table th{
+			border: 1px solid black;
+			padding: 10px;
+		}
+		/* observation-chart */
+		.observation-chart{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.839);
+			padding-top: 120px;
+			overflow-y: scroll;
+			display: none;
+			z-index: 800;
+		}
+		.show-Obchart{
+			display: block;
+		}
+		.observation-chart img{
+			width: 30px;
+			height: 30px;
+			margin: auto;
+		}
+		.observ{
+			margin: auto;
+			text-align: center;
+		}
+		.observ .drug-head{
+			margin: auto;
+			margin-top: 20px;
+			width: 300px;
+			background-color: #fff;
+			color: black;
+			text-align: center;
+			font-size: 30px;
+			font-weight: 700;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		}
+		.observ table{
+			margin: auto;
+			margin-top: 10px;
+		}
+	</style>
+	<title>AdminHub</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<!-- <div class="sidebars">
+    <div class="logo"></div> 
+    <ul class="menu">
+
+			<li>
+				<a href="#">
+				 <i class="fas fa-user"></i>
+				 <span>.....</span>
+				</a> 
+		 </li>
+		 
+        <li class="active">
+           <a href="admindash.html" >
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+           </a> 
+        </li>
+
+        <li>
+            <a href="#">
+             <i class="fas fa-user"></i>
+             <span>Profile</span>
+            </a>
+         </li>
+
+         <li>
+            <a href="/admin-patients.html">
+            <i class="fas fa-user"></i>
+             <span>Patients</span>
+            </a> 
+         </li>
+         <li>
+            <a href="#">
+             <i class="fas fa-cog"></i>
+             <span>Settings</span>
+            </a> 
+         </li>
+
+         <li class="logout">
+            <a href="#">
+             <i class="fas fa-sign-out-alt"></i>
+             <span>Logout</span>
+            </a> 
+         </li>
+    </ul>
+   </div> -->
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<div class = "container flex">
+				<div class="logo-div">
+						<a href = "index.html" class = "navbar-brand">
+								<img src = "/images/ANCOP logo.jpg" class="logo" alt = "site logo">
+						</a>
+						<div>ANCOP <span> Hospital</span></div>
+				</div>
+				<button type = "button" class = "navbar-show-btn">
+						<img src = "/images/ham-menu-icon.png">
+				</button>
+
+				<div class = "navbar-collapse bg-white">
+						<button type = "button" class = "navbar-hide-btn">
+								<img src = "images/close-icon.png">
+						</button>
+						<ul class = "navbar-nav">
+								<li class = "nav-item">
+										<a href = "#" class = "nav-link">Home</a>
+								</li>
+								<li class = "nav-item">
+										<a href = "#" class = "nav-link">About</a>
+								</li>
+								<li class = "nav-item">
+										<a href = "#" class = "nav-link">Service</a>
+								</li>
+								<li class = "nav-item">
+										<a href = "#" class = "nav-link">Doctors</a>
+								</li>
+								<li class = "nav-item">
+										<a href = "#" class = "nav-link">Departments</a>
+								</li>
+								<li class = "nav-item">
+										<a href = "#" class = "nav-link">Blog</a>
+								</li>
+								<li class = "nav-item">
+										<a href = "#" class = "nav-link">Contact</a>
+								</li>
+						</ul>
+				</div> 
+		</div>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">W e l c o m e</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Dr Anthony Otenyi</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#" class="btn-download">
+					<span class="text">Doctor</span>
+				</a>
+			</div>
+
+			<div class="patients-profile-wrapper">
+				<div class="profile">
+					<div class="user-img"><img src="/images/man.png" alt=""></div>
+					<div class="user-details">
+						<% if(user){ %>
+							<div>NAME: <span><%= user.firstname %>  <%= user.lastname %></span></div>
+						<div>Hospital ID: <span><%= user.patientID %></span></div>
+						<div>GENDER: <span><%= user.gender %></span></div>
+						<div>AGE: <span><%= user.age %>yrs</span></div>
+						<div>WARD: <span>GENERAL</span></div>
+						<% } %>	
+					</div>
+					<div class="user-func">
+						<div class="first">
+							<div class="drug-chart style-func"><a href="#">Drug Chart</a> <img class="func-img" src="/images/plus (1).png" alt="" onclick="
+								let drugChart = document.querySelector('.drugchart-add');
+									drugChart.classList.add('show-DC');
+								"></div>
+							<div class="observation shift-func style-func"><a href="#">Observation Chart</a> <img class="func-img" src="/images/plus (1).png" alt="" onclick="
+								let observationChart = document.querySelector('.observation-chart');
+								observationChart.classList.add('show-Obchart');
+							"></div>
+						</div>
+						<div class="first">
+							<div class="note style-func"><a href="#">Clinic Note</a><img class="func-img" src="/images/plus (1).png" alt="" onclick="
+									let clinicNote = document.querySelector('.clinic-note');
+											clinicNote.classList.add('show-note');
+								"></div>
+							<div class="lab-test shift-func style-func"><a href="#">Lab Result</a> <img class="func-img" src="/images/plus (1).png" alt=""></div>
+						</div>
+					</div>
+
+					<div class="footer">a GeNeSix&copy; site</div>
+				</div>
+				
+			</div>
+
+			<div class="drugchart-add">
+				<img src="/images/remove (1).png" onclick="
+				let drugCharts = document.querySelector('.drugchart-add');
+									drugCharts.classList.remove('show-DC');
+				" alt="">
+				<div class="drug-head">Drug Chart</div>
+				<table class="d-table">
+					<thead>
+						<tr>
+							<th>Drugs</th>
+							<th>Dose</th>
+							<th>Frequency</th>
+							<th>Route</th>
+							<th>Duration</th>
+							<th>Time (AM/PM)</th>
+						</tr>
+					</thead>
+					<tbody id="medication-body">
+						<tr>
+							<td contenteditable="true" class="drug"></td>
+							<td contenteditable="true" class="dose">New Dose</td>
+							<td contenteditable="true" class="frequency">New Frequency</td>
+							<td contenteditable="true" class="route">New Route</td>
+							<td contenteditable="true" class="duration"> Duration </td>
+							<td contenteditable="true" class="time">New Time</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<div class="btns"><button id="add-row-btn">Add Row</button> <button id="send-chart" class="submit-drug">Submit</button></div>
+				
+				
+			</div>
+
+
+		<div class="clinic-note">
+			<div class="notes">
+				
+				<header>
+					<div class="note-remove-img">
+						<img src="/images/close (1).png" onclick="
+							let clinicNote = document.querySelector('.clinic-note');
+										clinicNote.classList.remove('show-note');
+							" alt="">
+					</div>
+					<h1>Hospital Clinic Note</h1>
+					<p>Date: <span id="date"></span></p>
+				</header>
+					
+					<div class="note-wrapper">
+						<section class="note-patient-info">
+							<h2>Patient Information</h2>
+							<div class="info">
+								<div class="note-age">Name: <span><%= user.lastname %> <%= user.firstname %></span></div>
+							</div>
+							<div class="info">
+								<div class="note-age">Hospital ID: <span><%= user.patientID %></span></div>
+							</div>
+							<div class="info">
+								<div class="note-age">Gender: <span><%= user.gender %></span></div>
+							</div>
+							<div class="info">
+								<div class="note-age">Age: <span><%= user.age %>yrs</span></div>
+							</div>
+							<div class="doctor-notes">
+								<label for="diagnosis"><h3>Diagnosis:</h3></label>
+								<textarea id="diagnosis" rows="4" placeholder="Enter diagnosis" class="w-diagnosis"></textarea>
+							</div>
+						</section>
+				
+						<section class="doctor-notes">
+							<h2>Doctor's Notes</h2>
+							<textarea id="notes" rows="6" placeholder="Enter notes" class="w-note"></textarea>
+						</section>
+
+						<button class="submit-note">Submit</button>
+					</div>
+			</div>
+		</div>
+
+
+		<div class="observation-chart">
+			<img src="/images/remove (1).png" onclick="
+				let observationCharts = document.querySelector('.observation-chart');
+				observationCharts.classList.remove('show-Obchart');
+				" alt="">
+			<div class="observ">
+				<div class="drug-head">Observation Chart</div>
+				<table class="d-table">
+					<thead>
+						<tr>
+							<th>Time (AM/PM)</th>
+							<th>Temperature</th>
+							<th>Pulse</th>
+							<th>B.P</th>
+							<th>Registration</th>
+							<th>Remark</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td contenteditable="true" class="ob-time">New Time</td>
+							<td contenteditable="true" class="temperature">New Temperature</td>
+							<td contenteditable="true" class="pulse">New Pulse</td>
+							<td contenteditable="true" class="bloodpressure">New B.P</td>
+							<td contenteditable="true" class="registration">New Registration</td>
+							<td contenteditable="true" class="remark">New Remark</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="btns"><button id="send-chart" class="submit-observation">Submit</button></div>
+			</div>
+		</div>
+
+			
+		</main>
+		
+
+		
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="/js/script.js"></script>
+	<script>
+
+		/*------------drug-chart------------*/
+		document.querySelector('.submit-drug').addEventListener('click', async (e)=>{
+
+			let drug = document.querySelector('.drug').innerHTML;
+			let dose = document.querySelector('.dose').innerHTML;
+			let frequency = document.querySelector('.frequency').innerHTML;
+			let route = document.querySelector('.route').innerHTML;
+			let duration = document.querySelector('.duration').innerHTML;
+			let time = document.querySelector('.time').innerHTML;
+			let prescriber = 'Dr Anthony';
+			let date = new Date().toLocaleDateString();
+			let patientID = `<%= user.patientID %>`;
+
+			try{
+
+				let res = await fetch('/ANCOP/admindash/drugchart', {
+					method: 'POST',
+					body: JSON.stringify({ drug, dose, frequency, route, duration, time, prescriber, date, patientID }),
+					headers: { 'content-Type': 'application/json' }
+				})
+
+				let data = await res.json()
+				if(data.result){
+					console.log(data.result);
+				}
+
+			}
+			catch(err){
+				console.log(err);
+			}
+
+		})
+
+
+		/*------------clinic-notes----------*/
+		document.querySelector('.submit-note').addEventListener('click', async (e)=>{
+			
+			let author = 'Dr Anthony';
+			let note = document.querySelector('.w-note').value;
+			let diagnosis = document.querySelector('.w-diagnosis').value;
+			let date = new Date().toLocaleDateString();
+			let patientID = `<%= user.patientID %>`;
+			console.log(patientID);
+
+
+			try{
+				 const res = await fetch('/ANCOP/admindash/note', {
+					method: 'POST',
+					body: JSON.stringify({patientID, author, note, diagnosis, date}),
+					headers: { 'content-Type' : 'application/json' }
+				 })
+
+				 const data = await res.json();
+				 if(data){
+					console.log(data.result);
+				 }
+			}
+			catch(err){
+				console.log(err);
+			}
+		})
+		
+
+
+		/*-------------observation chart------------*/
+		document.querySelector('.submit-observation').addEventListener('click', async (e) => {
+			
+			e.preventDefault();
+
+			let date = new Date().toLocaleDateString();
+			let time = document.querySelector('.ob-time').innerHTML;
+			let temperature = document.querySelector('.temperature').innerHTML;
+			let pulse = document.querySelector('.pulse').innerHTML;
+			let bloodpressure = document.querySelector('.bloodpressure').innerHTML;
+			let registration = document.querySelector('.registration').innerHTML;
+			let remark = document.querySelector('.remark').innerHTML;
+			let patientID = `<%= user.patientID %>`;
+
+			try{
+
+				const res = await fetch('/ANCOP/admindash/observation', {
+					method: 'POST',
+					body: JSON.stringify({ date, time, temperature, pulse, bloodpressure, registration, remark, patientID }),
+					headers: {'content-Type': 'application/json'}
+				})
+
+				const data = await res.json()
+
+				console.log(data.result);
+
+			}
+			catch(err){
+				console.log(err);
+			}
+
+			// console.log({date,time,temperature,pulse,bloodpressure,registration,remark,patientID});
+
+		})
+
+
+
+		document.getElementById('date').innerHTML = new Date().toLocaleDateString();
+
+		// document.getElementById('add-row-btn').addEventListener('click', function() {
+		// 	const tableBody = document.getElementById('medication-body');
+		// 	const newRow = `
+		// 		<tr>
+		// 			<td contenteditable="true"></td>
+		// 			<td contenteditable="true">New Dose</td>
+		// 			<td contenteditable="true">New Frequency</td>
+		// 			<td contenteditable="true">New Route</td>
+		// 			<td contenteditable="true">New Time</td>
+		// 			<td contenteditable="true">New Signature</td>
+		// 		</tr>
+		// 	`;
+		// 	tableBody.innerHTML += newRow;
+		// });
+	</script>
+</body>
+</html>

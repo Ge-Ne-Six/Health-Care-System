@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	
+	
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/css/dashstyle.css">
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!-- CSS-Swiper============ -->
+  <link rel="stylesheet" href="/Swiper Files/swiper-bundle.min.css">
+
+	<style>
+		body{
+    display: flex;
+		}
+		.logo-div{
+			display: flex !important;
+			color: #fff;
+		}
+		.logo-div img{
+			width: 80px !important;
+			border-radius: 80px;
+			margin-top: 17px;
+		}
+		.logo-div div{
+			display: flex !important;
+			margin-top: 35px;
+		}
+		.logo-div div span{
+			margin-left: 10px;
+		}
+		.profile-image{
+			width: 70px;
+			height: 70px;
+			border-radius: 50px;
+		}
+		.table-data{
+			overflow-y: hidden !important;
+			width: 480px !important;
+		}
+		.doc-notes{
+			background-color: #e1dfdf;
+			width: 100%;
+			height: 200px;
+			font-family: Arial, Helvetica, sans-serif;
+			max-width: 100%;
+			margin: auto;
+			margin-bottom: 50px;
+			padding: 20px;
+			overflow: scroll;
+			overflow-x: hidden;
+			border-radius: 20px;
+		}
+		.doc-name{
+			margin: auto;
+			font-style: italic;
+			font-weight: 300;
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		}
+		.notes .head{
+			display: flex;
+			font-size: 15px;
+			font-weight: 700;
+
+		}
+		.notes  .notes-date{
+			font-weight: 200;
+			font-style: italic;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+		.swiper-slide{
+			display: flex !important;
+			justify-content: space-around;
+		}
+		.table-data{
+			width: 80% !important;
+			overflow: hidden;
+			
+			
+		}
+
+	</style>
+	<title>UserHub</title>
+</head>
+<body>
+
+
+	<%- include('../partials/nav-mainbar.ejs') %>
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Hospital ID:</a>
+						</li>
+						<li>
+							<a class="active" href="#"><%= user.patientID %></a>
+						</li>
+					</ul>
+				</div>
+				
+				<a href="#" class="btn-download">
+					<div>General</div>
+				<span class="text"></span>
+				</a>
+			</div>
+
+			<ul class="box-info">
+				<li>
+					<img src="/img/blood-pressure.png" class="vitalsimg" alt="">
+					<span class="text">
+						<h3><% observations.bloodpressure %></h3>
+						<p>Blood Pressure</p>
+					</span>
+				</li>
+				<li>
+					<img src="/img/bmi.png" class="vitalsimg" alt="">
+					<span class="text">
+						<h3>2834</h3>
+						<p>Body Weight</p>
+					</span>
+				</li>
+				<li>
+					<img src="/img/temprature.png" class="vitalsimg" alt="">
+					<span class="text">
+						<h3>25F</h3>
+						<p>Temprature</p>
+					</span>
+				</li>
+			</ul>
+
+					<div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              
+              
+              
+              <% if (note.length > 0) { %>
+                <% for (i = 0; i < note.length; i++) { %>
+                    
+                    <% const notes = note[i] %>
+                              <div class="swiper-slide">
+      
+																<div class="table-data">
+																	<div class="order">
+																		<div class="head">
+																			<h3>Recent Doctors Notes</h3>
+																		</div>
+																		
+																	<div class="notes">
+																		<div class="head"><div>NOTES</div> </div>
+																		<div class="doc-notes"><%= notes.note %></div>
+																		<div class="doc-name"><%= notes.author %></div>
+																		<div class="notes-date"><%= notes.date %></div>
+																	</div>
+							
+                    					</div>
+														</div>
+					
+													</div>
+                <% } %>
+                <% } else { %>
+                  <h3> They aren't any notes </h3>
+      
+                   
+                <% } %> 
+
+            </div>
+          
+			</div>
+
+			<div class="slider-btns">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+	<script src="/Swiper Files/swiper-bundle.min.js"></script>
+
+	<script src="/js/script.js"></script>
+	<script>
+		var swiper = new Swiper(".mySwiper", {
+slidesPerView: 1,
+spaceBetween: 10,
+pagination: {
+  el: ".swiper-pagination",
+  clickable: true,
+},
+autoplay:{
+  delay: 5000,
+  disableOnInteraction: false,
+},
+navigation: {
+  nextEl: ".swiper-button-next",
+  prevEl: ".swiper-button-prev",
+},
+breakpoints: {
+  640: {
+    slidesPerView: 1,
+    spaceBetween: 20,
+  },
+  768: {
+    slidesPerView: 2,
+    spaceBetween: 40,
+  },
+  1024: {
+    slidesPerView: 2,
+    spaceBetween: 50,
+  },
+},
+});
+
+	</script>
+</body>
+</html>

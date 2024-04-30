@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	
+	
+	<!-- My CSS -->
+	<link href="/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/dashstyle.css">
+	<link rel="stylesheet" href="/css/newstyle.css">
+	<link rel="stylesheet" href="/css/main.css">
+
+	<style>
+		.logo-div{
+			display: flex !important;
+			color: #fff;
+		}
+		.logo-div img{
+			width: 80px !important;
+			border-radius: 80px;
+			margin-top: 17px;
+		}
+		.logo-div div{
+			display: flex !important;
+			margin-top: 35px;
+		}
+		.logo-div div span{
+			margin-left: 10px;
+		}
+		.profile-image{
+			width: 70px;
+			height: 70px;
+			border-radius: 50px;
+		}
+    .notes-head {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.notes-head h1 {
+  margin: 0;
+}
+
+.note-main {
+  padding: 20px;
+}
+
+.patient-info, .doctor-notes {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.patient-info h2, .doctor-notes h2 {
+  margin-top: 0;
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
+.info strong {
+  font-weight: bold;
+}
+
+.info span {
+  display: inline-block;
+}
+
+.doctor-notes p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.note-footer {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+	</style>
+	<title>UserHub</title>
+</head>
+<body>
+
+<%- include('../partials/nav-mainbar.ejs') %>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<body>
+      <header class="notes-head">
+        <h1>Clinic Note for Patient</h1>
+      </header>
+      
+      <main class="note-main">
+        <section class="patient-info">
+          <h2>Patient Information</h2>
+          <div class="info">
+            <strong>Name:</strong>
+            <span id="name"></span>
+          </div>
+          <div class="info">
+            <strong>Date of Birth:</strong>
+            <span id="dob"></span>
+          </div>
+        </section>
+    
+        <section class="doctor-notes">
+          <h2>Doctor's Notes</h2>
+          <p id="notes"></p>
+        </section>
+      </main>
+      
+      <footer class="note-footer">
+        <p>&copy; 2024 Hospital Clinic. All rights reserved.</p>
+      </footer>
+	
+
+	<script src="/js/script.js"></script>
+</body>
+</html>

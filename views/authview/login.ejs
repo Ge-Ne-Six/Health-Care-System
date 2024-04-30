@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+    <%- include('../partials/authHead.ejs') %>
+</head>
+
+<body>
+    <!-- header -->
+    <header class = "header bg-blue">
+        <nav class = "navbar bg-blue">
+            <div class = "container flex">
+                <div class="logo-div">
+                    <a href = "index.html" class = "navbar-brand">
+                        <img src = "/images/ANCOP logo.jpg" class="logo" alt = "site logo">
+                    </a>
+                    <div>ANCOP Hospital</div>
+                </div>
+                <button type = "button" class = "navbar-show-btn">
+                    <img src = "/images/ham-menu-icon.png">
+                </button>
+
+                <div class = "navbar-collapse bg-white">
+                    <button type = "button" class = "navbar-hide-btn">
+                        <img src = "/images/close-icon.png">
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Home</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">About</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Service</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Doctors</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Departments</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Blog</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    <div class = "search-bar">
+                        <form class="search-form">
+                            <div class = "search-bar-box flex">
+                                <input type = "search" class = "search-control" placeholder="Search here">
+                                <!-- <span class = "search-icon flex"> -->
+                                    <img src = "/images/search-icon-dark.png">
+                                <!-- </span> -->
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+
+        <div class = "header-inner text-white text-center">
+            <div class = "container grid">
+                <div class = "header-inner-left">
+                    <h1>your most trusted<br> <span>health partner</span></h1>
+                    <p class = "lead">the best match services for you</p>
+                    <p class = "text text-md">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam, nulla odit esse necessitatibus corporis voluptatem?</p>
+                </div>
+                <div class = "header-inner-right">
+                    <!-- Hero Start -->
+                    <div class="container-fluid bg-primary py-5 mb-5 hero-header login-wrapper">
+                        <form class="login-form">
+                        <div class="login">Sign in</div>
+                        <p class="input-wrapper">
+                        <p>
+                            <input type="text" name="patient" id="patient" placeholder="Email / Phonenumber / Id" class="input">
+                            <img src="/img/user.png" class="userImage" alt="">
+                            <div class="error email"></div> 
+                        </p>
+                        <p>
+                            <input type="password" name="password" id="pass" placeholder="Password" class="input pass">
+                            <img src="/img/visible (1).png" class="passImage" onclick="iconChange()" alt="">
+                            <div class="error pass"></div>
+                        </p>
+                        <p><button class="signbtn">Sign in</button></p>
+                        <div class="remember"><span class="remember-me"><input type="checkbox" name="" id="check">Remember me</span> <span class="need-help"><a href="#">Need help?</a></span></div>
+                        <p class="new-to">New to ANCOP? <a href="/signup">Sign up now.</a></p>
+                        </p>  
+                        </form>
+                    </div>
+                    <!-- <img src = "images/header.png"> -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end of header -->
+
+    <%- include('../partials/footer.ejs') %>
+    <!-- authentication js ------->
+    <!-- <script src="/js/loginauth.js"></script> -->
+
+    <!-- Template Javascript -->
+    <script src="/js/script.js"></script>
+
+    <script>
+
+        let form = document.querySelector('.login-form');
+
+        form.addEventListener('submit', async (e) =>{
+
+            e.preventDefault();
+                        // err
+            const emailError = document.querySelector('.error.email');
+            const passError = document.querySelector('.error.pass');
+
+            emailError.textContent = '';
+            passError.textContent = '';
+
+            const patient = form.patient.value;
+            const password = form.password.value;
+
+
+
+            try{
+                const res = await fetch('/ANCOP/login', {
+                    method: 'POST',
+                    body: JSON.stringify({patient, password}),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const result = await res.json();
+
+                if(result.errors){
+
+                    emailError.textContent = `*${result.errors.email}`;
+                    passError.textContent = `*${result.errors.password}`;
+
+                }
+
+                if(result.user){
+                    location.assign('/ANCOP/patients/dashboard')
+                    console.log(result.user);
+                }
+            }
+            catch(err){
+                console.log(err)
+            }
+        })
+
+    </script>
+</body>
+
+</html>

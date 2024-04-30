@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	
+	
+	<!-- My CSS -->
+	<link href="/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/dashstyle.css">
+	<link rel="stylesheet" href="/css/newstyle.css">
+	<link rel="stylesheet" href="/css/main.css">
+
+	<style>
+		body{
+			display: flex;
+		}
+		.logo-div{
+			display: flex !important;
+			color: #fff;
+		}
+		.logo-div img{
+			width: 80px !important;
+			border-radius: 80px;
+			margin-top: 17px;
+		}
+		.logo-div div{
+			display: flex !important;
+			margin-top: 35px;
+		}
+		.logo-div div span{
+			margin-left: 10px;
+		}
+		.profile-image{
+			width: 70px;
+			height: 70px;
+			border-radius: 50px;
+		}
+	</style>
+	<title>UserHub</title>
+</head>
+<body>
+
+<%- include('../partials/nav-mainbar.ejs') %>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Observation Chart</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Hospital ID:</a>
+						</li>
+						<li>
+							<a class="active" href="#"><%= user.patientID %></a>
+						</li>
+					</ul>
+				</div>
+				
+				<a href="#" class="btn-download">
+					<div>Hospital ID: </div>
+				<span class="text"></span>
+				</a>
+			</div>
+
+			
+
+
+			<table>
+        <thead>
+          <tr>
+            <th>Dates</th>
+            <th>Time (AM/PM)</th>
+            <th>Temperature</th>
+            <th>Pulse</th>
+            <th>B.P</th>
+            <th>Registration</th>
+            <th>Signature</th>
+            <th>Remark</th>
+          </tr>
+        </thead>
+        <tbody id="records-body">
+          <% if(observations){ %>
+						<% for(i = 0; i < observations.length; i++) {%>
+							<% const observation = observations[i] %>
+
+							<tr>
+								<td><%= observation.date %></td>
+								<td><%= observation.time %></td>
+								<td><%= observation.temperature %></td>
+								<td><%= observation.pulse %></td>
+								<td><%= observation.bloodpressure %></td>
+								<td><%= observation.registration %></td>
+								<td><%= observation.signature %></td>
+								<td><%= observation.remark %></td>
+							</tr>
+
+						<% } %>	
+
+					<% } %>	
+        </tbody>
+      </table>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="/js/script.js"></script>
+</body>
+</html>
