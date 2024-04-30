@@ -220,7 +220,10 @@
 
                     const data = await res.json();
 
-                    if(data.user){
+                    if(data.message){
+
+                        location.assign('/ANCOP/login')
+                        console.log(data.message);
 
                     }
 
