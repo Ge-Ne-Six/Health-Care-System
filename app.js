@@ -30,6 +30,11 @@ app.use(express.json());
 app.use(cookieParser()); 
 app.use(morgan('dev')); 
 
+
+app.get('/', (req,res)=>{
+  res.redirect('/ANCOP');
+})
+
 app.get('/ANCOP', (req,res)=>{
   res.render('index', {title: 'Home'})
 });
